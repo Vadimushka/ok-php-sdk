@@ -22,13 +22,15 @@ use OK\Actions\Places;
 use OK\Actions\Sdk;
 use OK\Actions\Search;
 use OK\Actions\Share;
+use OK\Actions\Stat;
 use OK\Actions\Stream;
 use OK\Actions\Url;
 use OK\Actions\Users;
 use OK\Actions\Video;
 use OK\Actions\Widget;
 
-class OkApiClient {
+class OkApiClient
+{
 
     protected const API_HOST = 'https://api.ok.ru/fb.do';
 
@@ -37,79 +39,160 @@ class OkApiClient {
      */
     private $request;
 
-    /** @var Apps */
+    /**
+     * Методы для работы с приложениями
+     * @var Apps
+     */
     private $apps;
 
-    /** @var Bookmark*/
+    /**
+     * Методы для работы с закладками
+     * @var Bookmark
+     */
     private $bookmark;
 
-    /** @var Callbacks*/
+    /**
+     * Callback - методы (например, платежка)
+     * @var Callbacks
+     */
     private $callbacks;
 
-    /** @var Communities*/
+    /**
+     * Методы для работы с сообществами
+     * @var Communities
+     */
     private $communities;
 
-    /** @var Discussions*/
+    /**
+     * Методы для работы с дискуссиями
+     * @var Discussions
+     */
     private $discussions;
 
-    /** @var Events*/
+    /**
+     * Методы для работы с событиями
+     * @var Events
+     */
     private $events;
 
-    /** @var Friends*/
+    /**
+     * Методы для работы с друзьями
+     * @var Friends
+     */
     private $friends;
 
-    /** @var Group*/
+    /**
+     * Методы для работы с группами
+     * @var Group
+     */
     private $group;
 
-    /** @var Interests*/
+    /**
+     * Методы для работы с интересами
+     * @var Interests
+     */
     private $interests;
 
-    /** @var Market*/
+    /**
+     * Методы для работы с каталогами и товарами
+     * @var Market
+     */
     private $market;
 
-    /** @var Mediatopic*/
+    /**
+     * Методы для работы с медиатопиками
+     * @var Mediatopic
+     */
     private $mediatopic;
 
-    /** @var MessagesV2*/
+    /**
+     * Методы для работы с сообщениями (новая версия)
+     * @var MessagesV2
+     */
     private $messagesV2;
 
-    /** @var Notifications*/
+    /**
+     * Методы для работы с нотификациями
+     * @var Notifications
+     */
     private $notifications;
 
-    /** @var Payment*/
+    /**
+     * Методы для работы с платежами
+     * @var Payment
+     */
     private $payment;
 
-    /** @var Photos*/
+    /**
+     * Методы для работы с фото
+     * @var Photos
+     */
     private $photos;
 
-    /** @var PhotosV2*/
+    /**
+     * Методы для работы с фото (новый вариант)
+     * @var PhotosV2
+     */
     private $photosV2;
 
-    /** @var Places*/
+    /**
+     * Методы для работы с функциональностью "места"
+     * @var Places
+     */
     private $places;
 
-    /** @var Sdk*/
+    /**
+     * Специальные методы для работы из SDK
+     * @var Sdk
+     */
     private $sdk;
 
-    /** @var Search*/
+    /**
+     * Методы для работы с поиском
+     * @var Search
+     */
     private $search;
 
-    /** @var Share*/
+    /**
+     * Методы для работы с функциональностью "поделиться"
+     * @var Share
+     */
     private $share;
 
-    /** @var Stream*/
+    /**
+     * Методы для работы со статистикой
+     * @var Stat
+     */
+    private $stat;
+
+    /**
+     * Методы для работы с лентой
+     * @var Stream
+     */
     private $stream;
 
-    /** @var Url*/
+    /**
+     * Методы для работы с ссылками
+     * @var Url
+     */
     private $url;
 
-    /** @var Users*/
+    /**
+     * Методы для работы с пользователями
+     * @var Users
+     */
     private $users;
 
-    /** @var Video*/
+    /**
+     * Методы для работы с видео
+     * @var Video
+     */
     private $video;
 
-    /** @var Widget*/
+    /**
+     * Методы для получения мобильных виджетов
+     * @var Widget
+     */
     private $widget;
 
     /**
@@ -117,22 +200,25 @@ class OkApiClient {
      * @param string $application_key
      * @param string $app_secret_key
      */
-    public function __construct(string $application_key, string $app_secret_key) {
+    public function __construct(string $application_key, string $app_secret_key)
+    {
         $this->request = new OKApiRequest($application_key, $app_secret_key, self::API_HOST);
     }
 
     /**
      * @return OKApiRequest
      */
-    public function getRequest(): OKApiRequest {
+    public function getRequest(): OKApiRequest
+    {
         return $this->request;
     }
 
     /**
      * @return Apps
      */
-    public function getApps(): Apps {
-        if(!$this->apps){
+    public function getApps(): Apps
+    {
+        if (!$this->apps) {
             $this->apps = new Apps($this->request);
         }
         return $this->apps;
@@ -141,8 +227,9 @@ class OkApiClient {
     /**
      * @return Bookmark
      */
-    public function getBookmark(): Bookmark {
-        if(!$this->bookmark){
+    public function getBookmark(): Bookmark
+    {
+        if (!$this->bookmark) {
             $this->bookmark = new Bookmark($this->request);
         }
         return $this->bookmark;
@@ -151,8 +238,9 @@ class OkApiClient {
     /**
      * @return Callbacks
      */
-    public function getCallbacks(): Callbacks {
-        if(!$this->callbacks){
+    public function getCallbacks(): Callbacks
+    {
+        if (!$this->callbacks) {
             $this->callbacks = new Callbacks($this->request);
         }
         return $this->callbacks;
@@ -161,8 +249,9 @@ class OkApiClient {
     /**
      * @return Communities
      */
-    public function getCommunities(): Communities {
-        if(!$this->communities){
+    public function getCommunities(): Communities
+    {
+        if (!$this->communities) {
             $this->communities = new Communities($this->request);
         }
         return $this->communities;
@@ -171,8 +260,9 @@ class OkApiClient {
     /**
      * @return Discussions
      */
-    public function getDiscussions(): Discussions {
-        if(!$this->discussions){
+    public function getDiscussions(): Discussions
+    {
+        if (!$this->discussions) {
             $this->discussions = new Discussions($this->request);
         }
         return $this->discussions;
@@ -181,8 +271,9 @@ class OkApiClient {
     /**
      * @return Events
      */
-    public function getEvents(): Events {
-        if(!$this->events){
+    public function getEvents(): Events
+    {
+        if (!$this->events) {
             $this->events = new Events($this->request);
         }
         return $this->events;
@@ -191,8 +282,9 @@ class OkApiClient {
     /**
      * @return Friends
      */
-    public function getFriends(): Friends {
-        if(!$this->friends){
+    public function getFriends(): Friends
+    {
+        if (!$this->friends) {
             $this->friends = new Friends($this->request);
         }
         return $this->friends;
@@ -201,8 +293,9 @@ class OkApiClient {
     /**
      * @return Group
      */
-    public function getGroup(): Group {
-        if(!$this->group){
+    public function getGroup(): Group
+    {
+        if (!$this->group) {
             $this->group = new Group($this->request);
         }
         return $this->group;
@@ -211,8 +304,9 @@ class OkApiClient {
     /**
      * @return Interests
      */
-    public function getInterests(): Interests {
-        if(!$this->interests){
+    public function getInterests(): Interests
+    {
+        if (!$this->interests) {
             $this->interests = new Interests($this->request);
         }
         return $this->interests;
@@ -221,8 +315,9 @@ class OkApiClient {
     /**
      * @return Market
      */
-    public function getMarket(): Market {
-        if(!$this->market){
+    public function getMarket(): Market
+    {
+        if (!$this->market) {
             $this->market = new Market($this->request);
         }
         return $this->market;
@@ -231,8 +326,9 @@ class OkApiClient {
     /**
      * @return Mediatopic
      */
-    public function getMediatopic(): Mediatopic {
-        if(!$this->mediatopic){
+    public function getMediatopic(): Mediatopic
+    {
+        if (!$this->mediatopic) {
             $this->mediatopic = new Mediatopic($this->request);
         }
         return $this->mediatopic;
@@ -241,8 +337,9 @@ class OkApiClient {
     /**
      * @return MessagesV2
      */
-    public function getMessagesV2(): MessagesV2 {
-        if(!$this->messagesV2){
+    public function getMessagesV2(): MessagesV2
+    {
+        if (!$this->messagesV2) {
             $this->messagesV2 = new MessagesV2($this->request);
         }
         return $this->messagesV2;
@@ -251,8 +348,9 @@ class OkApiClient {
     /**
      * @return Notifications
      */
-    public function getNotifications(): Notifications {
-        if(!$this->notifications){
+    public function getNotifications(): Notifications
+    {
+        if (!$this->notifications) {
             $this->notifications = new Notifications($this->request);
         }
         return $this->notifications;
@@ -261,8 +359,9 @@ class OkApiClient {
     /**
      * @return Payment
      */
-    public function getPayment(): Payment {
-        if(!$this->payment){
+    public function getPayment(): Payment
+    {
+        if (!$this->payment) {
             $this->payment = new Payment($this->request);
         }
         return $this->payment;
@@ -271,8 +370,9 @@ class OkApiClient {
     /**
      * @return Photos
      */
-    public function getPhotos(): Photos {
-        if(!$this->photos){
+    public function getPhotos(): Photos
+    {
+        if (!$this->photos) {
             $this->photos = new Photos($this->request);
         }
         return $this->photos;
@@ -281,8 +381,9 @@ class OkApiClient {
     /**
      * @return PhotosV2
      */
-    public function getPhotosV2(): PhotosV2 {
-        if(!$this->photosV2){
+    public function getPhotosV2(): PhotosV2
+    {
+        if (!$this->photosV2) {
             $this->photosV2 = new PhotosV2($this->request);
         }
         return $this->photosV2;
@@ -291,8 +392,9 @@ class OkApiClient {
     /**
      * @return Places
      */
-    public function getPlaces(): Places {
-        if(!$this->places){
+    public function getPlaces(): Places
+    {
+        if (!$this->places) {
             $this->places = new Places($this->request);
         }
         return $this->places;
@@ -301,8 +403,9 @@ class OkApiClient {
     /**
      * @return Sdk
      */
-    public function getSdk(): Sdk {
-        if(!$this->sdk){
+    public function getSdk(): Sdk
+    {
+        if (!$this->sdk) {
             $this->sdk = new Sdk($this->request);
         }
         return $this->sdk;
@@ -311,8 +414,9 @@ class OkApiClient {
     /**
      * @return Search
      */
-    public function getSearch(): Search {
-        if(!$this->search){
+    public function getSearch(): Search
+    {
+        if (!$this->search) {
             $this->search = new Search($this->request);
         }
         return $this->search;
@@ -321,18 +425,28 @@ class OkApiClient {
     /**
      * @return Share
      */
-    public function getShare(): Share {
-        if(!$this->share){
+    public function getShare(): Share
+    {
+        if (!$this->share) {
             $this->share = new Share($this->request);
         }
         return $this->share;
     }
 
+    public function getStat(): Stat
+    {
+        if(!$this->stat){
+            $this->stat = new Stat($this->request);
+        }
+        return $this->stat;
+    }
+
     /**
      * @return Stream
      */
-    public function getStream(): Stream {
-        if(!$this->stream){
+    public function getStream(): Stream
+    {
+        if (!$this->stream) {
             $this->stream = new Stream($this->request);
         }
         return $this->stream;
@@ -341,8 +455,9 @@ class OkApiClient {
     /**
      * @return Url
      */
-    public function getUrl(): Url {
-        if(!$this->url){
+    public function getUrl(): Url
+    {
+        if (!$this->url) {
             $this->url = new Url($this->request);
         }
         return $this->url;
@@ -351,8 +466,9 @@ class OkApiClient {
     /**
      * @return Users
      */
-    public function getUsers(): Users {
-        if(!$this->users){
+    public function getUsers(): Users
+    {
+        if (!$this->users) {
             $this->users = new Users($this->request);
         }
         return $this->users;
@@ -361,8 +477,9 @@ class OkApiClient {
     /**
      * @return Video
      */
-    public function getVideo(): Video {
-        if(!$this->video){
+    public function getVideo(): Video
+    {
+        if (!$this->video) {
             $this->video = new Video($this->request);
         }
         return $this->video;
@@ -371,14 +488,13 @@ class OkApiClient {
     /**
      * @return Widget
      */
-    public function getWidget(): Widget {
-        if(!$this->widget){
+    public function getWidget(): Widget
+    {
+        if (!$this->widget) {
             $this->widget = new Widget($this->request);
         }
         return $this->widget;
     }
-
-
 
 
 }

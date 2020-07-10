@@ -2,7 +2,9 @@
 
 namespace OK\Client;
 
-
+use OK\Exceptions\Api\ExceptionMapper;
+use OK\Exceptions\OKApiException;
+use OK\Exceptions\OKClientException;
 use OK\TransportClient\Curl\CurlHttpClient;
 use OK\TransportClient\TransportClientResponse;
 use OK\TransportClient\TransportRequestException;
@@ -10,9 +12,9 @@ use OK\TransportClient\TransportRequestException;
 class OKApiRequest {
 
     private const PARAM_APPLICATION_KEY = 'application_key';
+    private const PARAM_SIG = 'sig';
     private const PARAM_ACCESS_TOKEN = 'access_token';
     private const PARAM_METHOD = 'method';
-    private const PARAM_SIG = 'sig';
     private const PARAM_FORMAT = 'format';
 
     private const KEY_ERROR = 'error';
@@ -21,11 +23,17 @@ class OKApiRequest {
     protected const CONNECTION_TIMEOUT = 10;
     protected const HTTP_STATUS_CODE_OK = 200;
 
+    /**
+     * @var string
+     */
     private $host;
 
     private $application_key;
     private $application_key_secret;
 
+    /**
+     * @var CurlHttpClient
+     */
     private $http_client;
 
 
@@ -42,7 +50,18 @@ class OKApiRequest {
         $this->application_key_secret = $app_secret_key;
     }
 
-
+    /**
+     * Makes post request.
+     *
+     * @param string $method
+     * @param string $access_token
+     * @param array $params
+     *
+     * @return mixed
+     *
+     * @throws OKClientException
+     * @throws OKApiException
+     */
     public function post(string $method, string $access_token, array $params = []) {
         $params = $this->formatParams($params);
         $params[static::PARAM_ACCESS_TOKEN] = $access_token;
@@ -53,7 +72,7 @@ class OKApiRequest {
         try {
             $response = $this->http_client->get($this->host, $params);
         } catch (TransportRequestException $e) {
-            throw new VKClientException($e);
+            throw new OKClientException($e);
         }
 
         return $this->parseResponse($response);
@@ -62,10 +81,34 @@ class OKApiRequest {
     private function calcSignature($params){
         $requestStr = "";
         foreach ($params as $key => $value) {
+            if($key == self::PARAM_ACCESS_TOKEN)
+                continue;
             $requestStr .= $key . "=" . $value;
         }
         $requestStr .= md5($params[static::PARAM_ACCESS_TOKEN] . $this->application_key_secret);
         return md5($requestStr);
+    }
+
+    /**
+     * Uploads data by its path to the given url.
+     *
+     * @param string $upload_url
+     * @param string $parameter_name
+     * @param string $path
+     *
+     * @return mixed
+     *
+     * @throws OKClientException
+     * @throws OKApiException
+     */
+    public function upload(string $upload_url, string $parameter_name, string $path) {
+        try {
+            $response = $this->http_client->upload($upload_url, $parameter_name, $path);
+        } catch (TransportRequestException $e) {
+            throw new OKClientException($e);
+        }
+
+        return $this->parseResponse($response);
     }
 
     /**
@@ -75,8 +118,8 @@ class OKApiRequest {
      *
      * @return mixed
      *
-     * @throws VKApiException
-     * @throws VKClientException
+     * @throws OKApiException
+     * @throws OKClientException
      */
     private function parseResponse(TransportClientResponse $response) {
         $this->checkHttpStatus($response);
@@ -86,7 +129,7 @@ class OKApiRequest {
 
         if (isset($decode_body[static::KEY_ERROR])) {
             $error = $decode_body[static::KEY_ERROR];
-            $api_error = new VKApiError($error);
+            $api_error = new OKApiError($error);
             throw ExceptionMapper::parse($api_error);
         }
 
@@ -135,11 +178,11 @@ class OKApiRequest {
     /**
      * @param TransportClientResponse $response
      *
-     * @throws VKClientException
+     * @throws OKClientException
      */
-    protected function checkHttpStatus(TransportClientResponse $response) {
+    protected function checkHttpStatus(TransportClientResponse $response): void {
         if ($response->getHttpStatus() != static::HTTP_STATUS_CODE_OK) {
-            throw new VKClientException("Invalid http status: {$response->getHttpStatus()}");
+            throw new OKClientException("Invalid http status: {$response->getHttpStatus()}");
         }
     }
 
