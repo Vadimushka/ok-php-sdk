@@ -2,7 +2,7 @@
 
 PHP library for Ok API interaction, includes OAuth 2.0 authorization and API methods. Full Ok API features documentation can be found [here](https://apiok.ru/).
 
-[![Packagist](https://img.shields.io/packagist/v/vkcom/vk-php-sdk.svg)](https://packagist.org/packages/vkcom/vk-php-sdk)
+[![Packagist](https://img.shields.io/packagist/v/vadimushka/ok-php-sdk.svg)](https://packagist.org/packages/vadimushka/ok-php-sdk)
 
 ## 1. Prerequisites
 
