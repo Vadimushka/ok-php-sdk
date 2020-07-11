@@ -1,4 +1,5 @@
 <?php
+
 namespace OK\Actions\Enums;
 
 class PagingDirection

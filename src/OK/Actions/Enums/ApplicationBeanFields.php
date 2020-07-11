@@ -1,8 +1,6 @@
 <?php
 
-
 namespace OK\Actions\Enums;
-
 
 class ApplicationBeanFields
 {

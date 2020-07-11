@@ -2,7 +2,6 @@
 
 namespace OK\Actions\Enums;
 
-
 class UserInfoField
 {
     const ACCESSIBLE = "ACCESSIBLE";
