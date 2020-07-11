@@ -1,11 +1,14 @@
 <?php
-
 namespace OK\Actions;
 
+use OK\Actions\Enums\ApplicationBeanFields;
 use OK\Client\OKApiRequest;
 use OK\Exceptions\OKApiException;
 use OK\Exceptions\OKClientException;
 
+/**
+ * Методы для работы с приложениями
+ */
 class Apps
 {
 
@@ -24,8 +27,14 @@ class Apps
     }
 
     /**
+     * Возвращает список приложений для выбранного раздела каталога.
+     *
      * @param string $access_token
      * @param array $params
+     *  @var ApplicationBeanFields $fields: Список запрашиваемых полей
+     *  @var string $anchor: Идентификатор постраничного вывода.
+     *  @var integer $count: Количество возвращаемых результатов.
+     *  @var string $node: Идентификатор раздела каталога
      * @return array|mixed|null
      * @throws OKApiException
      * @throws OKClientException
@@ -36,8 +45,12 @@ class Apps
     }
 
     /**
+     * Возврашает каталог игр с указанным количеством приложений для каждого раздела.
+     *
      * @param string $access_token
      * @param array $params
+     *  @var ApplicationBeanFields $fields: Список запрашиваемых полей
+     *  @var integer $count: Количество возвращаемых результатов.
      * @return array|mixed|null
      * @throws OKApiException
      * @throws OKClientException
@@ -48,8 +61,13 @@ class Apps
     }
 
     /**
+     * Получение новых игр на платформе
+     *
      * @param string $access_token
      * @param array $params
+     *  @var ApplicationBeanFields $fields: Список запрашиваемых полей
+     *  @var string $anchor: Идентификатор постраничного вывода.
+     *  @var integer $count: Количество возвращаемых результатов.
      * @return array|mixed|null
      * @throws OKApiException
      * @throws OKClientException
@@ -60,8 +78,13 @@ class Apps
     }
 
     /**
+     * Список игр из топа
+     *
      * @param string $access_token
      * @param array $params
+     *  @var ApplicationBeanFields $fields: Список запрашиваемых полей
+     *  @var string $anchor: Идентификатор постраничного вывода.
+     *  @var integer $count: Количество возвращаемых результатов.
      * @return array|mixed|null
      * @throws OKApiException
      * @throws OKClientException
@@ -72,6 +95,8 @@ class Apps
     }
 
     /**
+     * Получения топа приложений
+     *
      * @param string $access_token
      * @param array $params
      * @return array|mixed|null

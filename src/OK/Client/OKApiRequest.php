@@ -64,6 +64,7 @@ class OKApiRequest {
      */
     public function post(string $method, string $access_token, array $params = []) {
         $params = $this->formatParams($params);
+        $params[static::PARAM_FORMAT] = "json";
         $params[static::PARAM_ACCESS_TOKEN] = $access_token;
         $params[static::PARAM_APPLICATION_KEY] = $this->application_key;
         $params[static::PARAM_METHOD] = $method;
@@ -80,12 +81,15 @@ class OKApiRequest {
 
     private function calcSignature($params){
         $requestStr = "";
+        $ACCESS_TOKEN = $params[static::PARAM_ACCESS_TOKEN];
+        unset($params[static::PARAM_ACCESS_TOKEN]);
+        ksort($params);
         foreach ($params as $key => $value) {
             if($key == self::PARAM_ACCESS_TOKEN)
                 continue;
             $requestStr .= $key . "=" . $value;
         }
-        $requestStr .= md5($params[static::PARAM_ACCESS_TOKEN] . $this->application_key_secret);
+        $requestStr .= md5($ACCESS_TOKEN . $this->application_key_secret);
         return md5($requestStr);
     }
 
