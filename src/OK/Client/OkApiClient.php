@@ -205,295 +205,139 @@ class OkApiClient
         $this->request = new OKApiRequest($application_key, $app_secret_key, self::API_HOST);
     }
 
-    /**
-     * @return OKApiRequest
-     */
     public function getRequest(): OKApiRequest
     {
         return $this->request;
     }
 
-    /**
-     * @return Apps
-     */
     public function getApps(): Apps
     {
-        if (!$this->apps) {
-            $this->apps = new Apps($this->request);
-        }
-        return $this->apps;
+        return $this->apps = $this->apps ?? new Apps($this->getRequest());
     }
 
-    /**
-     * @return Bookmark
-     */
     public function getBookmark(): Bookmark
     {
-        if (!$this->bookmark) {
-            $this->bookmark = new Bookmark($this->request);
-        }
-        return $this->bookmark;
+        return $this->bookmark = $this->bookmark ?? new Bookmark($this->getRequest());
     }
 
-    /**
-     * @return Callbacks
-     */
     public function getCallbacks(): Callbacks
     {
-        if (!$this->callbacks) {
-            $this->callbacks = new Callbacks($this->request);
-        }
-        return $this->callbacks;
+        return $this->callbacks = $this->callbacks ?? new Callbacks($this->getRequest());
     }
 
-    /**
-     * @return Communities
-     */
     public function getCommunities(): Communities
     {
-        if (!$this->communities) {
-            $this->communities = new Communities($this->request);
-        }
-        return $this->communities;
+        return $this->communities = $this->communities ?? new Communities($this->getRequest());
     }
 
-    /**
-     * @return Discussions
-     */
     public function getDiscussions(): Discussions
     {
-        if (!$this->discussions) {
-            $this->discussions = new Discussions($this->request);
-        }
-        return $this->discussions;
+        return $this->discussions = $this->discussions ?? new Discussions($this->getRequest());
     }
 
-    /**
-     * @return Events
-     */
     public function getEvents(): Events
     {
-        if (!$this->events) {
-            $this->events = new Events($this->request);
-        }
-        return $this->events;
+        return $this->events = $this->events ?? new Events($this->getRequest());
     }
 
-    /**
-     * @return Friends
-     */
     public function getFriends(): Friends
     {
-        if (!$this->friends) {
-            $this->friends = new Friends($this->request);
-        }
-        return $this->friends;
+        return $this->friends = $this->friends ?? new Friends($this->getRequest());
     }
 
-    /**
-     * @return Group
-     */
     public function getGroup(): Group
     {
-        if (!$this->group) {
-            $this->group = new Group($this->request);
-        }
-        return $this->group;
+        return $this->group = $this->group ?? new Group($this->getRequest());
     }
 
-    /**
-     * @return Interests
-     */
     public function getInterests(): Interests
     {
-        if (!$this->interests) {
-            $this->interests = new Interests($this->request);
-        }
-        return $this->interests;
+        return $this->interests = $this->interests ?? new Interests($this->getRequest());
     }
 
-    /**
-     * @return Market
-     */
     public function getMarket(): Market
     {
-        if (!$this->market) {
-            $this->market = new Market($this->request);
-        }
-        return $this->market;
+        return $this->market = $this->market ?? new Market($this->getRequest());
     }
 
-    /**
-     * @return Mediatopic
-     */
     public function getMediatopic(): Mediatopic
     {
-        if (!$this->mediatopic) {
-            $this->mediatopic = new Mediatopic($this->request);
-        }
-        return $this->mediatopic;
+        return $this->mediatopic = $this->mediatopic ?? new Mediatopic($this->getRequest());
     }
 
-    /**
-     * @return MessagesV2
-     */
     public function getMessagesV2(): MessagesV2
     {
-        if (!$this->messagesV2) {
-            $this->messagesV2 = new MessagesV2($this->request);
-        }
-        return $this->messagesV2;
+        return $this->messagesV2 = $this->messagesV2 ?? new MessagesV2($this->getRequest());
     }
 
-    /**
-     * @return Notifications
-     */
     public function getNotifications(): Notifications
     {
-        if (!$this->notifications) {
-            $this->notifications = new Notifications($this->request);
-        }
-        return $this->notifications;
+        return $this->notifications = $this->notifications ?? new Notifications($this->getRequest());
     }
 
-    /**
-     * @return Payment
-     */
     public function getPayment(): Payment
     {
-        if (!$this->payment) {
-            $this->payment = new Payment($this->request);
-        }
-        return $this->payment;
+        return $this->payment = $this->payment ?? new Payment($this->getRequest());
     }
 
-    /**
-     * @return Photos
-     */
     public function getPhotos(): Photos
     {
-        if (!$this->photos) {
-            $this->photos = new Photos($this->request);
-        }
-        return $this->photos;
+        return $this->photos = $this->photos ?? new Photos($this->getRequest());
     }
 
-    /**
-     * @return PhotosV2
-     */
     public function getPhotosV2(): PhotosV2
     {
-        if (!$this->photosV2) {
-            $this->photosV2 = new PhotosV2($this->request);
-        }
-        return $this->photosV2;
+        return $this->photosV2 = $this->photosV2 ?? new PhotosV2($this->getRequest());
     }
 
-    /**
-     * @return Places
-     */
     public function getPlaces(): Places
     {
-        if (!$this->places) {
-            $this->places = new Places($this->request);
-        }
-        return $this->places;
+        return $this->places = $this->places ?? new Places($this->getRequest());
     }
 
-    /**
-     * @return Sdk
-     */
     public function getSdk(): Sdk
     {
-        if (!$this->sdk) {
-            $this->sdk = new Sdk($this->request);
-        }
-        return $this->sdk;
+        return $this->sdk = $this->sdk ?? new Sdk($this->getRequest());
     }
 
-    /**
-     * @return Search
-     */
     public function getSearch(): Search
     {
-        if (!$this->search) {
-            $this->search = new Search($this->request);
-        }
-        return $this->search;
+        return $this->search = $this->search ?? new Search($this->getRequest());
     }
 
-    /**
-     * @return Share
-     */
     public function getShare(): Share
     {
-        if (!$this->share) {
-            $this->share = new Share($this->request);
-        }
-        return $this->share;
+        return $this->share = $this->share ?? new Share($this->getRequest());
     }
 
     public function getStat(): Stat
     {
-        if(!$this->stat){
-            $this->stat = new Stat($this->request);
-        }
-        return $this->stat;
+        return $this->stat = $this->stat ?? new Stat($this->getRequest());
     }
 
-    /**
-     * @return Stream
-     */
     public function getStream(): Stream
     {
-        if (!$this->stream) {
-            $this->stream = new Stream($this->request);
-        }
-        return $this->stream;
+        return $this->stream = $this->stream ?? new Stream($this->getRequest());
     }
 
-    /**
-     * @return Url
-     */
     public function getUrl(): Url
     {
-        if (!$this->url) {
-            $this->url = new Url($this->request);
-        }
-        return $this->url;
+        return $this->url = $this->url ?? new Url($this->getRequest());
     }
 
-    /**
-     * @return Users
-     */
     public function getUsers(): Users
     {
-        if (!$this->users) {
-            $this->users = new Users($this->request);
-        }
-        return $this->users;
+        return $this->users = $this->users ?? new Users($this->getRequest());
     }
 
-    /**
-     * @return Video
-     */
     public function getVideo(): Video
     {
-        if (!$this->video) {
-            $this->video = new Video($this->request);
-        }
-        return $this->video;
+        return $this->video = $this->video ?? new Video($this->getRequest());
     }
 
-    /**
-     * @return Widget
-     */
     public function getWidget(): Widget
     {
-        if (!$this->widget) {
-            $this->widget = new Widget($this->request);
-        }
-        return $this->widget;
+        return $this->widget = $this->widget ?? new Widget($this->getRequest());
     }
 
 

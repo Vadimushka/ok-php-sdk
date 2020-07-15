@@ -4,6 +4,8 @@
 namespace OK\Actions;
 
 use OK\Client\OKApiRequest;
+use OK\Exceptions\OKApiException;
+use OK\Exceptions\OKClientException;
 
 class Discussions {
 
@@ -20,6 +22,17 @@ class Discussions {
         $this->request = $request;
     }
 
+    /**
+     * Получение подробной информации о дискуссии с возможностью в одном запросе получить информацию об упоминаемых в дискуссии объектах.
+     *
+     * @param string $access_token
+     * @param array $params
+     *  @var string $discussionId: Идентификатор обсуждаемого объекта
+     *
+     * @return array|mixed|null
+     * @throws OKApiException
+     * @throws OKClientException
+     */
     public function get(string $access_token, array $params = []) {
         return $this->request->post('discussions.get', $access_token, $params);
     }
