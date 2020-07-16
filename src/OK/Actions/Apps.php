@@ -1,26 +1,16 @@
 <?php
+
 namespace OK\Actions;
 
-use OK\Actions\Enums\ApplicationBeanFields;
 use OK\Client\OKApiRequest;
 use OK\Exceptions\OKApiException;
 use OK\Exceptions\OKClientException;
 
-/**
- * Методы для работы с приложениями
- */
 class Apps
 {
 
-    /**
-     * @var OKApiRequest
-     */
     private $request;
 
-    /**
-     * Apps constructor.
-     * @param OKApiRequest $request
-     */
     public function __construct(OKApiRequest $request)
     {
         $this->request = $request;
@@ -31,13 +21,10 @@ class Apps
      *
      * @param string $access_token
      * @param array $params
-     *  @var ApplicationBeanFields $fields: Список запрашиваемых полей
-     *  @var string $anchor: Идентификатор постраничного вывода.
-     *  @var integer $count: Количество возвращаемых результатов.
-     *  @var string $node: Идентификатор раздела каталога
      * @return array|mixed|null
      * @throws OKApiException
      * @throws OKClientException
+     * @link https://apiok.ru/dev/methods/rest/apps/apps.getPlatformCatalogNodeTop
      */
     public function getPlatformCatalogNodeTop(string $access_token, array $params = [])
     {
@@ -49,11 +36,10 @@ class Apps
      *
      * @param string $access_token
      * @param array $params
-     *  @var ApplicationBeanFields $fields: Список запрашиваемых полей
-     *  @var integer $count: Количество возвращаемых результатов.
      * @return array|mixed|null
      * @throws OKApiException
      * @throws OKClientException
+     * @link https://apiok.ru/dev/methods/rest/apps/apps.getPlatformCatalogNodesTop
      */
     public function getPlatformCatalogNodesTop(string $access_token, array $params = [])
     {
@@ -65,12 +51,10 @@ class Apps
      *
      * @param string $access_token
      * @param array $params
-     *  @var ApplicationBeanFields $fields: Список запрашиваемых полей
-     *  @var string $anchor: Идентификатор постраничного вывода.
-     *  @var integer $count: Количество возвращаемых результатов.
      * @return array|mixed|null
      * @throws OKApiException
      * @throws OKClientException
+     * @link https://apiok.ru/dev/methods/rest/apps/apps.getPlatformNew
      */
     public function getPlatformNew(string $access_token, array $params = [])
     {
@@ -82,12 +66,10 @@ class Apps
      *
      * @param string $access_token
      * @param array $params
-     *  @var ApplicationBeanFields $fields: Список запрашиваемых полей
-     *  @var string $anchor: Идентификатор постраничного вывода.
-     *  @var integer $count: Количество возвращаемых результатов.
      * @return array|mixed|null
      * @throws OKApiException
      * @throws OKClientException
+     * @link https://apiok.ru/dev/methods/rest/apps/apps.getPlatformTop
      */
     public function getPlatformTop(string $access_token, array $params = [])
     {
@@ -102,6 +84,7 @@ class Apps
      * @return array|mixed|null
      * @throws OKApiException
      * @throws OKClientException
+     * @link https://apiok.ru/dev/methods/rest/apps/apps.getTop
      */
     public function getTop(string $access_token, array $params = [])
     {

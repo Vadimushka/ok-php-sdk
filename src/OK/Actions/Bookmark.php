@@ -1,25 +1,18 @@
 <?php
+
 namespace OK\Actions;
 
 use OK\Client\OKApiRequest;
 use OK\Exceptions\OKApiException;
 use OK\Exceptions\OKClientException;
 
-/**
- * Методы для работы с закладками
- */
-class Bookmark {
+class Bookmark
+{
 
-    /**
-     * @var OKApiRequest
-     */
     private $request;
 
-    /**
-     * Apps constructor.
-     * @param OKApiRequest $request
-     */
-    public function __construct(OKApiRequest $request) {
+    public function __construct(OKApiRequest $request)
+    {
         $this->request = $request;
     }
 
@@ -28,13 +21,13 @@ class Bookmark {
      *
      * @param string $access_token
      * @param array $params
-     *  @var string $ref_id: id контента
-     *  @var string $bookmark_type: Тип контента
      * @return array|mixed|null
      * @throws OKApiException
      * @throws OKClientException
+     * @link https://apiok.ru/dev/methods/rest/bookmark/bookmark.add
      */
-    public function add(string $access_token, array $params = []) {
+    public function add(string $access_token, array $params = [])
+    {
         return $this->request->post('bookmark.add', $access_token, $params);
     }
 
@@ -43,13 +36,13 @@ class Bookmark {
      *
      * @param string $access_token
      * @param array $params
-     *  @var string $ref_id: id контента
-     *  @var string $bookmark_type: Тип контента
      * @return array|mixed|null
      * @throws OKApiException
      * @throws OKClientException
+     * @link https://apiok.ru/dev/methods/rest/bookmark/bookmark.delete
      */
-    public function delete(string $access_token, array $params = []) {
+    public function delete(string $access_token, array $params = [])
+    {
         return $this->request->post('bookmark.delete', $access_token, $params);
     }
 

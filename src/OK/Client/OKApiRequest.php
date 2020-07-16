@@ -63,6 +63,8 @@ class OKApiRequest {
      * @throws OKApiException
      */
     public function post(string $method, string $access_token, array $params = []) {
+        //TODO check class to verify required params
+
         $params = $this->formatParams($params);
         $params[static::PARAM_FORMAT] = "json";
         $params[static::PARAM_ACCESS_TOKEN] = $access_token;
