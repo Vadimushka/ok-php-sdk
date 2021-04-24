@@ -65,6 +65,7 @@ class OKApiRequest
     public function upload(string $upload_url, string $parameter_name, string $path): mixed
     {
         //TODO https://docs.guzzlephp.org/en/stable/quickstart.html#uploading-data
+        return false;
         $response = $this->http_client->upload($upload_url, $parameter_name, $path);
     }
 
