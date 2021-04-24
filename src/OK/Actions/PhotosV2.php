@@ -1,24 +1,11 @@
 <?php
 
-
 namespace OK\Actions;
 
-
-use OK\Client\OKApiRequest;
-
-class PhotosV2 {
-
-    /**
-     * @var OKApiRequest
-     */
-    private $request;
-
-    /**
-     * Apps constructor.
-     * @param OKApiRequest $request
-     */
-    public function __construct(OKApiRequest $request) {
-        $this->request = $request;
-    }
-
+/**
+ * @method \stdClass commit($access_token, $params = []) Этот метод завершает процесс добавления фотографий, предоставляя дополнительную meta-информацию, относящуюся к добавленным фотографиям. Его нужно вызвать после успешного добавления фотографий. Не вызывайте этот метод для фотографий, публикуемых в групповых медиатопиках, объявлениях и каталогах объявлений.
+ * @method \stdClass getUploadUrl($access_token, $params = []) Метод запускает процесс добавления и возвращает URL, который должен использоваться для фактической загрузки фотографий
+ */
+class PhotosV2 extends BaseAction
+{
 }

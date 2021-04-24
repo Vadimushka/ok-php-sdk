@@ -1,24 +1,11 @@
 <?php
 
-
 namespace OK\Actions;
 
-
-use OK\Client\OKApiRequest;
-
-class Places {
-
-    /**
-     * @var OKApiRequest
-     */
-    private $request;
-
-    /**
-     * Apps constructor.
-     * @param OKApiRequest $request
-     */
-    public function __construct(OKApiRequest $request) {
-        $this->request = $request;
-    }
-
+/**
+ * @method \stdClass reverseGeocode($access_token, $params = []) По координатам пытается определить город и страну
+ * @method \stdClass validate($access_token, $params = []) Осуществляет валидацию места перед созданием
+ */
+class Places extends BaseAction
+{
 }

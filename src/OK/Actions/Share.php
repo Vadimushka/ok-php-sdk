@@ -1,24 +1,11 @@
 <?php
 
-
 namespace OK\Actions;
 
-
-use OK\Client\OKApiRequest;
-
-class Share {
-
-    /**
-     * @var OKApiRequest
-     */
-    private $request;
-
-    /**
-     * Apps constructor.
-     * @param OKApiRequest $request
-     */
-    public function __construct(OKApiRequest $request) {
-        $this->request = $request;
-    }
-
+/**
+ * @method \stdClass fetchLink($access_token, $params = []) Метод для получения информации о ссылке. Полученная информация может быть впоследствии использована для публикации ссылки в медиатопике.
+ * @method \stdClass fetchLinkV2($access_token, $params = []) Метод для получения информации о ссылке. Полученная информация может быть впоследствии использована для публикации ссылки в медиатопике.
+ */
+class Share extends BaseAction
+{
 }

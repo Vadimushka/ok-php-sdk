@@ -1,25 +1,10 @@
 <?php
 
-
 namespace OK\Actions;
 
-
-use OK\Client\OKApiRequest;
-
-class Stat
+/**
+ * @method \stdClass getFromServer($access_token, $params = []) Получение игровой статистики. Аналог данных, отображаемых на странице <a href="http://ok.ru/app/appstat">игровой статистики</a> в ОК.
+ */
+class Stat extends BaseAction
 {
-
-    /**
-     * @var OKApiRequest
-     */
-    private $request;
-
-    /**
-     * Apps constructor.
-     * @param OKApiRequest $request
-     */
-    public function __construct(OKApiRequest $request) {
-        $this->request = $request;
-    }
-
 }
