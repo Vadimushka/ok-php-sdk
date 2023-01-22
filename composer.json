@@ -1,9 +1,9 @@
 {
-    "name": "vadimushka/ok-php-sdk",
+    "name": "bakalavrDankovskiy/ok-php-sdk",
     "description": "OK PHP SDK",
     "keywords": ["ok", "sdk"],
     "type": "library",
-    "homepage": "https://github.com/Vadimushka/ok-php-sdk",
+    "homepage": "https://github.com/bakalavrDankovskiy/ok-php-sdk",
     "license": "MIT",
     "require": {
         "php": "^8.0",
